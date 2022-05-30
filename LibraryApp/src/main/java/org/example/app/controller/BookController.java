@@ -32,7 +32,7 @@ public class BookController {
 
     }
 
-    @RequestMapping(value = "/form/book", method = RequestMethod.GET)
+    @RequestMapping(value = "/form/book", method = RequestMethod.GET,produces = "text/html; charset=UTF-8")
     public String getForm(Model model) {
         model.addAttribute("book", new Book());
         return "book";

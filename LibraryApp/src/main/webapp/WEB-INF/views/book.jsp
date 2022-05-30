@@ -18,6 +18,7 @@
     AUTHOR:<form:input path="author"/>
     PUBLISHER:<form:input path="publisher"/>
     DESCRIPTION:<form:textarea path="description" rows="3" cols="15"/>
+    QUANTITY: <form:input path="quantity"/>
     <input type="submit" value="save">
 </form:form>
 </body>
