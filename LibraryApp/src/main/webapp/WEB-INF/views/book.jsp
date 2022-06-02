@@ -12,6 +12,7 @@
     <title>AddBook</title>
 </head>
 <body>
+<%--@elvariable id="book" type="java"--%>
 <form:form action="/form/book" method="post" modelAttribute="book">
     ISBN: <form:input path="isbn"/>
     TITLE:<form:input path="title"/>
@@ -19,6 +20,11 @@
     PUBLISHER:<form:input path="publisher"/>
     DESCRIPTION:<form:textarea path="description" rows="3" cols="15"/>
     QUANTITY: <form:input path="quantity"/>
+    CATEGORY:
+    <form:select itemValue="id" itemLabel="name" path="category"
+                 items="${categories}" />
+
+
     <input type="submit" value="save">
 </form:form>
 </body>
