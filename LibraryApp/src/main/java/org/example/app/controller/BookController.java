@@ -1,6 +1,7 @@
 package org.example.app.controller;
 
 import org.example.app.model.Book;
+import org.example.app.service.BookService;
 import org.example.repository.BookRepository;
 
 import org.slf4j.Logger;
@@ -18,57 +19,65 @@ import java.util.stream.Collectors;
 
 
 @Controller
-
-
+@RequestMapping("/admin/books")
 public class BookController {
 
-    private static final Logger logger = LoggerFactory.getLogger((BookController.class));
+    private final BookService bookService;
 
-    private final BookRepository bookRepository;
-
-
-    BookController(BookRepository bookRepository) {
-        this.bookRepository = bookRepository;
-
+    public BookController(BookService bookService) {
+        this.bookService = bookService;
     }
 
-    @RequestMapping(value = "/form/book", method = RequestMethod.GET,produces = "text/html; charset=UTF-8")
-    public String getForm(Model model) {
+    @RequestMapping(value = "/all", method = RequestMethod.GET)
+    public String showPosts(Model model) {
+        model.addAttribute("books", bookService.findAllBooks());
+        return "allBooks";
+    }
+
+    @RequestMapping(value = "/add", method = RequestMethod.GET)
+    public String addBookForm(Model model) {
         model.addAttribute("book", new Book());
-        return "book";
+        return "addBook";
     }
 
-    @RequestMapping(value = "/form/book", method = RequestMethod.POST)
-    public String handle(@Valid Book book, BindingResult bindingResult) {
-        ///sprawdzamy, czy są błędy po walidacji
-
-        if (bindingResult.hasErrors()) {
-            logger.error("książka ma nieprawidłowe dane");
-            return "redirect:/form/book";
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    public String addBook(@Valid Book book, BindingResult result) {
+        if (result.hasErrors()) {
+            return "addBook";
+        } else {
+            bookService.addBook(book);
+            return "redirect:/admin/books/all";
         }
-
-
-        logger.info(book.toString());
-        bookRepository.save(book);
-        return "success";
-    }
-    @GetMapping("/book/findAll")
-    @ResponseBody
-    public String findAll(){
-        List<Book> books;
-        books = bookRepository.findAll();
-       return books.stream()
-               .map(Book::toString)
-               .collect(Collectors.joining(" , "));
     }
 
-    @RequestMapping("/book/delete/{id}")
-    @ResponseBody
+    @RequestMapping(value = "/show/{id}", method = RequestMethod.GET)
+    public String getBook(@PathVariable Long id, Model model) {
+        model.addAttribute("book", bookService.getBookById(id));
+        return "show";
+
+    }
+
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     public String deleteBook(@PathVariable Long id) {
-        bookRepository.deleteById(id);
-        return "deleted";
+        bookService.deleteBook(id);
+        return "redirect:/admin/books/all";
     }
 
+    @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
+    public String updateBookForm(@PathVariable Long id, Model model) {
+        model.addAttribute("book", bookService.getBookById(id));
+        return "updateBook";
+    }
+
+    @RequestMapping(value = "/edit", method = RequestMethod.POST)
+    public String updateBook(@Valid Book book, BindingResult result) {
+        if (result.hasErrors()) {
+            return "updateBook";
+        } else {
+            bookService.editBook(book);
+            return "redirect:/admin/books/all";
+        }
+    }
 
 }
 

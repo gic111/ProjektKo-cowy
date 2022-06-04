@@ -6,6 +6,8 @@ import org.hibernate.validator.constraints.pl.PESEL;
 import javax.persistence.*;
 
 import javax.validation.constraints.Email;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -25,5 +27,7 @@ public class User {
     private String pesel;
     @Email
     private String email;
+
+
 
 }

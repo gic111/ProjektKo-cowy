@@ -12,8 +12,8 @@
     <title>AddBook</title>
 </head>
 <body>
-<%--@elvariable id="book" type="java"--%>
-<form:form action="/form/book" method="post" modelAttribute="book">
+
+<form:form  modelAttribute="book">
     ISBN: <form:input path="isbn"/>
     TITLE:<form:input path="title"/>
     AUTHOR:<form:input path="author"/>

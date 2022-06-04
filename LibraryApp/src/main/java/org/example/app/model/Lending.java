@@ -46,6 +46,8 @@ public class Lending {
         this.updated = updated;
     }
 
+    private int extensionOfTheDeadline;
+
 
 
 
