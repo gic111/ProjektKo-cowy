@@ -19,7 +19,7 @@
     <th>Author</th>
     <th>ISBN</th>
     <th>Publisher</th>
-    <th>Genre</th>
+    <th>Category</th>
     <th>Action</th>
     </thead>
     <tbody>

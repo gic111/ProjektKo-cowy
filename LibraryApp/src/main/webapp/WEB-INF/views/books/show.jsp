@@ -19,6 +19,7 @@
     <th>ISBN</th>
     <th>Publisher</th>
     <th>Category</th>
+    <th>Description</th>
     </thead>
     <tbody>
     <tr>
@@ -26,6 +27,7 @@
         <td><c:out value="${book.author}"/></td>
         <td><c:out value="${book.isbn}"/></td>
         <td><c:out value="${book.publisher}"/></td>
+        <td><c:out value="${book.description}"/></td>
 
     </tr>
     </tbody>

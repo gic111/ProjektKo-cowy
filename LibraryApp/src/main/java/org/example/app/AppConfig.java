@@ -55,6 +55,10 @@ public class AppConfig implements WebMvcConfigurer{
         localeResolver.setDefaultLocale(new Locale("pl", "PL"));
         return localeResolver;
     }
+    @Override
+    public void addViewControllers(ViewControllerRegistry registry) {
+        registry.addViewController("/").setViewName("index");
+    }
 
 
 

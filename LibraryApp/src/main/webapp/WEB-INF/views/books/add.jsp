@@ -14,17 +14,18 @@
 </head>
 <body>
 
-<form:form method="post" modelAttribute="book">
+<form:form action="/books/add" method="post" modelAttribute="book">
     ISBN: <form:input path="isbn"/>
     TITLE:<form:input path="title"/>
     AUTHOR:<form:input path="author"/>
+    <br>
     PUBLISHER:<form:input path="publisher"/>
     DESCRIPTION:<form:textarea path="description" rows="3" cols="15"/>
     QUANTITY: <form:input path="quantity"/>
+    <br>
     CATEGORY:
     <form:select itemValue="id" itemLabel="name" path="category"
                  items="${categories}" />
-
     <input type="submit" value="save">
 </form:form>
 </body>
