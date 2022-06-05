@@ -1,10 +1,13 @@
 package org.example.app.service;
 
 import org.example.app.model.Book;
+
 import org.example.repository.BookRepository;
+
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
+
 import java.util.List;
 
 @Service
@@ -40,4 +43,5 @@ public class JpaBookService implements BookService{
     public List<Book> findAllBooks() {
         return bookRepository.findAll();
     }
+
 }

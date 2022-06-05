@@ -12,7 +12,7 @@
     <title>Book list</title>
 </head>
 <body>
-<a href="<c:url value="/admin/books/add"/>">Add book</a>
+<a href="<c:url value="/books/add"/>">Add book</a>
 <table>
     <thead>
     <th>Title</th>
@@ -31,8 +31,8 @@
             <td><c:out value="${book.publisher}"/></td>
             <td><c:out value="${book.category}"/></td>
             <td>
-                <a href="<c:url value="/admin/books/delete/${book.id}"/>">Delete</a>
-                <a href="<c:url value="/admin/books/edit/${book.id}"/>">Update</a>
+                <a href="<c:url value="/books/delete/${book.id}"/>">Delete</a>
+                <a href="<c:url value="/books/edit/${book.id}"/>">Update</a>
             </td>
         </tr>
     </c:forEach>

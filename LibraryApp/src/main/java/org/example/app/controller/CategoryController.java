@@ -2,8 +2,8 @@ package org.example.app.controller;
 
 import org.example.app.model.Category;
 import org.example.repository.CategoryRepository;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,8 +16,9 @@ import javax.validation.Valid;
 import java.util.Optional;
 
 @Controller
+@Primary
 public class CategoryController {
-    private static final Logger logger = LoggerFactory.getLogger((BookController.class));
+
 
     private final CategoryRepository categoryRepository;
 
@@ -31,12 +32,10 @@ public class CategoryController {
         return "category";
     }
     @RequestMapping(value = "/category", method = RequestMethod.POST)
-    public String handle(@Valid Category category, BindingResult bindingResult) {
+    public String addCategory(@Valid Category category, BindingResult bindingResult) {
         if(bindingResult.hasErrors()) {
-            logger.error("kategorja ma nieprawidlowe dane");
             return "category";
         }
-        logger.info(category.toString());
         categoryRepository.save(category);
         return "success";
     }

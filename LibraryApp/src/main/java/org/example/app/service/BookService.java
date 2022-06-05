@@ -6,7 +6,6 @@ import org.example.app.model.Book;
 import java.util.List;
 
 public interface BookService {
-
     Book getBookById(Long id);
 
     void addBook(Book bookToAdd);

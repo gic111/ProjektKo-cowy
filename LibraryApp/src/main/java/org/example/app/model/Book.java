@@ -25,7 +25,6 @@ public class Book {
 
     @ManyToOne
     @JoinColumn(name = "category_id")
-    @NotNull
     private Category category;
 
 }

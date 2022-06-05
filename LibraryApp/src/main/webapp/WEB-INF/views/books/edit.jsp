@@ -11,7 +11,7 @@
   <title>Update book</title>
 </head>
 <body>
-<c:url var="edit_url" value="/admin/books/edit"/>
+<c:url var="edit_url" value="/books/edit"/>
 <form:form modelAttribute="book" action="${edit_url}">
   <form:hidden path="id"/>
   ISBN: <form:input path="isbn"/>
