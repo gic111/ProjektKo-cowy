@@ -1,9 +1,18 @@
 package org.example.app.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
+@Getter
+@Setter
 @Entity
+@AllArgsConstructor
 @Table(name = "lending")
 public class Lending {
 
@@ -11,39 +20,42 @@ public class Lending {
     @GeneratedValue(strategy =
             GenerationType.IDENTITY)
     private Long id;
-    @OneToOne
+    @ManyToMany
     @JoinColumn(name = "user_id")
-    private User user;
-    @OneToOne
+    private List<User> users = new ArrayList<>();
+    @ManyToMany
     @JoinColumn(name = "book_id")
-    private Book book;
-    private LocalDateTime created;
+    private List<Book> books = new ArrayList<>();
+    private LocalDateTime rent;
 
-    private LocalDateTime updated;
+    private LocalDateTime returning;
+
+    public Lending() {
+    }
 
     @PrePersist
     public void prePersist() {
-        created = LocalDateTime.now();
+        rent = LocalDateTime.now();
     }
 
     @PreUpdate
     public void preUpdate() {
-        updated = LocalDateTime.now();
+        returning = LocalDateTime.now();
     }
-    public LocalDateTime getCreated() {
-        return created;
-    }
-
-    public void setCreated(LocalDateTime created) {
-        this.created = created;
+    public LocalDateTime getRent() {
+        return rent;
     }
 
-    public LocalDateTime getUpdated() {
-        return updated;
+    public void setRent(LocalDateTime rent) {
+        this.rent = rent;
     }
 
-    public void setUpdated(LocalDateTime updated) {
-        this.updated = updated;
+    public LocalDateTime getReturn() {
+        return returning;
+    }
+
+    public void setReturn(LocalDateTime returning) {
+        this.returning = returning;
     }
 
     private int extensionOfTheDeadline;

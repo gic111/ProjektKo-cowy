@@ -1,7 +1,7 @@
 package org.example.app.controller;
 
 
-import org.example.app.model.Category;
+
 import org.example.app.model.User;
 import org.example.app.service.UserService;
 import org.springframework.context.annotation.Primary;
