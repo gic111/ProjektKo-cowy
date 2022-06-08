@@ -7,6 +7,7 @@ import javax.persistence.*;
 
 import javax.validation.constraints.Email;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @Getter
@@ -27,6 +28,7 @@ public class User {
     private String pesel;
     @Email
     private String email;
+
 
 
 

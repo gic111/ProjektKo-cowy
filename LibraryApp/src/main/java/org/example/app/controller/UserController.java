@@ -1,65 +1,78 @@
 package org.example.app.controller;
 
+
+
 import org.example.app.model.User;
-import org.example.repository.UserRepository;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.example.app.service.UserService;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.validation.Valid;
-import java.util.List;
-import java.util.stream.Collectors;
+
 
 @Controller
+@Primary
+@RequestMapping("/users")
 public class UserController {
-    private static final Logger logger = LoggerFactory.getLogger((UserController.class));
 
-    private final UserRepository userRepository;
+    private final UserService userService;
 
 
-    public UserController(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    public UserController(UserService userService) {
+        this.userService = userService;
     }
 
-    @RequestMapping(value = "/form/user", method = RequestMethod.GET,produces = "text/html; charset=UTF-8")
+    @RequestMapping(value = "/all", method = RequestMethod.GET)
+    public String showUsers(Model model) {
+        model.addAttribute("users", userService.findAllUsers());
+        return "users/all";
+    }
+
+    @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String getForm(Model model) {
         model.addAttribute("user", new User());
-        return "user";
+        return "users/add";
     }
 
-    @RequestMapping(value = "/form/user", method = RequestMethod.POST)
-    public String handle(@Valid User user, BindingResult bindingResult) {
-        ///sprawdzamy, czy są błędy po walidacji
-
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    public String addUser(@Valid User user, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            logger.error("użytkownik ma nieprawidłowe dane");
-            return "redirect:/form/user";
+            return "users/add";
         }
-
-
-        logger.info(user.toString());
-        userRepository.save(user);
+        userService.addUser(user);
         return "success";
     }
-    @GetMapping("/user/findAll")
-    @ResponseBody
-    public String findAll(){
-        List<User> users;
-        users = userRepository.findAll();
-        return users.stream()
-                .map(User::toString)
-                .collect(Collectors.joining(" , "));
+
+    @RequestMapping(value = "/show/{id}", method = RequestMethod.GET)
+    public String getCategory(@PathVariable Long id, Model model) {
+        model.addAttribute("users", userService.getUserById(id));
+        return "users/show";
     }
 
-    @RequestMapping("/user/delete/{id}")
-    @ResponseBody
-    public String deleteBook(@PathVariable Long id) {
-        userRepository.deleteById(id);
-        return "deleted";
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+    public String deleteUser(@PathVariable Long id) {
+        userService.deleteUser(id);
+        return "redirect:/users/all";
     }
 
+    @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
+    public String updateUserForm(@PathVariable Long id, Model model) {
+        model.addAttribute("users", userService.getUserById(id));
+        return "users/edit";
+    }
 
+    @RequestMapping(value = "/edit", method = RequestMethod.POST)
+    public String updateUser(@Valid User user, BindingResult result) {
+        if (result.hasErrors()) {
+            return "users/edit";
+        } else {
+            userService.editUser(user);
+            return "redirect:/users/all";
+        }
+    }
 }
