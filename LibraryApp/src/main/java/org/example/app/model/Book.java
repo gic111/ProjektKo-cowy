@@ -25,7 +25,15 @@ public class Book {
 
     @ManyToOne
     @JoinColumn(name = "category_id")
-    @NotNull
     private Category category;
+
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
 
 }
