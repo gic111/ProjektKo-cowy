@@ -14,13 +14,13 @@
 </head>
 <body>
 
-<form:form action="/lendings/add" method="post" modelAttribute="lendings">
+<form:form action="/lend/add" method="post" modelAttribute="lendings">
     Books:
-    <form:select itemValue="id" itemLabel="name" path="books"
-                 items="${categories}" />
+    <form:select itemValue="id" itemLabel="title" path="books"
+                 items="${books}" />
     Users:
-    <form:select itemValue="id" itemLabel="name" path="users"
-                 items="${categories}" />
+    <form:select itemValue="id" itemLabel="firstName" path="users"
+                 items="${users}" />
 
     <input type="submit" value="save">
 </form:form>

@@ -45,7 +45,7 @@ public class UserController {
             return "users/add";
         }
         userService.addUser(user);
-        return "success";
+        return "redirect:/users/all";
     }
 
     @RequestMapping(value = "/show/{id}", method = RequestMethod.GET)

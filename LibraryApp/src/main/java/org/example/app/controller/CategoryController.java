@@ -43,7 +43,7 @@ public class CategoryController {
             return "categories/add";
         }
         categoryService.addCategory(category);
-        return "success";
+        return "redirect:/categories/all";
     }
 
     @RequestMapping(value = "/show/{id}", method = RequestMethod.GET)
