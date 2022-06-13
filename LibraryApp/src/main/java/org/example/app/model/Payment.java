@@ -8,18 +8,18 @@ import javax.persistence.*;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "penalty")
-public class Penalty {
+@Table(name = "payment")
+public class Payment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY )
     private Long id;
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
-    @ManyToOne
-    @JoinColumn(name = "book_id")
-    private Book book;
-    private int value;
+    @OneToOne
+    @JoinColumn(name = "lending_id")
+    private Lending lending;
+    private int paymentValue;
+    private int penaltyValue;
+
+
 
 
 }

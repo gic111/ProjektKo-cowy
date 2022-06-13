@@ -60,6 +60,7 @@ public class Lending {
     }
 
     private int extensionOfTheDeadline;
+    private Payment payment;
 
 
 
