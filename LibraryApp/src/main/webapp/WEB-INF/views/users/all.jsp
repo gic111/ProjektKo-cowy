@@ -36,6 +36,7 @@
             <td>
                 <a href="<c:url value="/users/delete/${user.id}"/>">Delete</a>
                 <a href="<c:url value="/users/edit/${user.id}"/>">Update</a>
+                <a href="<c:url value="/users/show/${user.id}"/>">Detalis</a>
             </td>
         </tr>
     </c:forEach>

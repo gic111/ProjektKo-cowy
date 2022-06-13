@@ -29,10 +29,12 @@
             <td>
                 <a href="<c:url value="/categories/delete/${category.id}"/>">Delete</a>
                 <a href="<c:url value="/categories/edit/${category.id}"/>">Update</a>
+                <a href="<c:url value="/categories/show/${category.id}"/>">Detalis</a>
             </td>
         </tr>
     </c:forEach>
     </tbody>
 </table>
+
 </body>
 </html>

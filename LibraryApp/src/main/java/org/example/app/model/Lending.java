@@ -60,6 +60,7 @@ public class Lending {
     }
 
     private int extensionOfTheDeadline;
+    @OneToOne(mappedBy = "lending")
     private Payment payment;
 
 
