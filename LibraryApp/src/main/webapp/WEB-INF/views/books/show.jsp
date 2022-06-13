@@ -10,6 +10,10 @@
 <html>
 <head>
     <title>Book's details</title>
+    <a href="<c:url value="/books/all"/>">Books</a>
+    <a href="<c:url value="/users/all"/>">Users</a>
+    <a href="<c:url value="/categories/all"/>">Categories</a>
+    <a href="<c:url value="/lend/all"/>">Lendings</a>
 </head>
 <body>
 <table>
@@ -27,6 +31,7 @@
         <td><c:out value="${book.author}"/></td>
         <td><c:out value="${book.isbn}"/></td>
         <td><c:out value="${book.publisher}"/></td>
+        <td><c:out value="${book.category.name}"/></td>
         <td><c:out value="${book.description}"/></td>
 
     </tr>

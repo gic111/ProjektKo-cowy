@@ -11,6 +11,10 @@
 <html>
 <head>
   <title>Update book</title>
+  <a href="<c:url value="/books/all"/>">Books</a>
+  <a href="<c:url value="/users/all"/>">Users</a>
+  <a href="<c:url value="/categories/all"/>">Categories</a>
+  <a href="<c:url value="/lend/all"/>">Lendings</a>
 </head>
 <body>
 <form:form modelAttribute="book" action="/books/edit">
@@ -22,7 +26,7 @@
   Description: <form:input path="description"/>
   Quantity:<form:input path="quantity"/>
   Category:
-  <form:select itemValue="id" itemLabel="name" path="category"
+  <form:select itemValue="id" itemLabel="name" path="category.id"
                items="${categories}"/>
   <input type="submit" value="Save">
 </form:form>

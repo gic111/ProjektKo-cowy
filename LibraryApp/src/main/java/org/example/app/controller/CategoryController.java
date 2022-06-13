@@ -1,9 +1,9 @@
 package org.example.app.controller;
 
-import org.example.app.model.Book;
+
 import org.example.app.model.Category;
 import org.example.app.service.CategoryService;
-import org.example.repository.CategoryRepository;
+
 
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Controller;
@@ -43,7 +43,7 @@ public class CategoryController {
             return "categories/add";
         }
         categoryService.addCategory(category);
-        return "success";
+        return "redirect:/categories/all";
     }
 
     @RequestMapping(value = "/show/{id}", method = RequestMethod.GET)

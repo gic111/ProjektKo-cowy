@@ -10,6 +10,10 @@
 <html>
 <head>
     <title>Categories list</title>
+    <a href="<c:url value="/books/all"/>">Books</a>
+    <a href="<c:url value="/users/all"/>">Users</a>
+    <a href="<c:url value="/categories/all"/>">Categories</a>
+    <a href="<c:url value="/lend/all"/>">Lendings</a><br>
 </head>
 <body>
 <a href="<c:url value="/categories/add"/>">Add category</a>

@@ -11,6 +11,10 @@
 <html>
 <head>
     <title>AddBook</title>
+    <a href="<c:url value="/books/all"/>">Books</a>
+    <a href="<c:url value="/users/all"/>">Users</a>
+    <a href="<c:url value="/categories/all"/>">Categories</a>
+    <a href="<c:url value="/lend/all"/>">Lendings</a><br>
 </head>
 <body>
 
@@ -24,7 +28,7 @@
     QUANTITY: <form:input path="quantity"/>
     <br>
     CATEGORY:
-    <form:select itemValue="id" itemLabel="name" path="category"
+    <form:select itemValue="id" itemLabel="name" path="category.id"
                  items="${categories}" />
     <input type="submit" value="save">
 </form:form>
