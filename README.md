@@ -6,6 +6,7 @@ Aplikacja do obsługi biblioteki która pozwala na dodawanie książek , ich kat
 
 
 
-jak zacząć
-należy pobrać do siebie repozytorium i odpalic
+# Jak zacząć
+
+Należy pobrać do siebie repozytorium i odpalic
 uruchomić aplikację przez http://localhost:8080/
