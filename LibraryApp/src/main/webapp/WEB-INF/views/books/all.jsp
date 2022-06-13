@@ -10,6 +10,10 @@
 <html>
 <head>
     <title>Book list</title>
+    <a href="<c:url value="/books/all"/>">Books</a>
+    <a href="<c:url value="/users/all"/>">Users</a>
+    <a href="<c:url value="/categories/all"/>">Categories</a>
+    <a href="<c:url value="/lend/all"/>">Lendings</a><br>
 </head>
 <body>
 <a href="<c:url value="/books/add"/>">Add book</a>
@@ -29,10 +33,11 @@
             <td><c:out value="${book.author}"/></td>
             <td><c:out value="${book.isbn}"/></td>
             <td><c:out value="${book.publisher}"/></td>
-            <td><c:out value="${book.category}"/></td>
+            <td><c:out value="${book.category.name}"/></td>
             <td>
                 <a href="<c:url value="/books/delete/${book.id}"/>">Delete</a>
                 <a href="<c:url value="/books/edit/${book.id}"/>">Update</a>
+                <a href="<c:url value="/books/show/${book.id}"/>">Details</a>
             </td>
         </tr>
     </c:forEach>

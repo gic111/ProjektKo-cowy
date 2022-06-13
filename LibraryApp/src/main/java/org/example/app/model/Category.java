@@ -10,8 +10,7 @@ import javax.validation.constraints.Size;
 @Setter
 @Getter
 @ToString
-@AllArgsConstructor
-@NoArgsConstructor
+
 @Entity
 @Table(name = "categories")
 public class Category {

@@ -17,6 +17,6 @@
 <a href="<c:url value="/books/all"/>">Books</a>
 <a href="<c:url value="/users/all"/>">Users</a>
 <a href="<c:url value="/categories/all"/>">Categories</a>
-<a href="<c:url value="/lendings/all"/>">Lendings</a>
+<a href="<c:url value="/lend/all"/>">Lendings</a>
 </body>
 </html>

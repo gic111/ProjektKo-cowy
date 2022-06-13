@@ -16,10 +16,10 @@
 
 <form:form action="/lend/add" method="post" modelAttribute="lendings">
     Books:
-    <form:select itemValue="id" itemLabel="title" path="books"
+    <form:select itemValue="id" itemLabel="title" path="book.id"
                  items="${books}" />
     Users:
-    <form:select itemValue="id" itemLabel="firstName" path="users"
+    <form:select itemValue="id" itemLabel="email" path="user.id"
                  items="${users}" />
 
     <input type="submit" value="save">

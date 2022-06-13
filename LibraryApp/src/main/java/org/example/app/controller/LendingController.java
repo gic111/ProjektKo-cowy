@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -53,9 +54,33 @@ public class LendingController {
             return "lendings/add";
         } else {
             lendingService.addLending(lending);
-            return "redirect:/lendings/all";
+            return "redirect:/lend/all";
         }
     }
+    @RequestMapping(value = "/show/{id}", method = RequestMethod.GET)
+    public String getBook(@PathVariable Long id, Model model) {
+        model.addAttribute("lendings", lendingService.getLendingById(id));
+        return "lendings/show";
+
+    }
+    @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
+    public String updateBookForm(@PathVariable Long id, Model model) {
+        model.addAttribute("lendings", lendingService.getLendingById(id));
+        model.addAttribute("users",usersList());
+        model.addAttribute("books",booksList());
+        return "lendings/edit";
+    }
+
+    @RequestMapping(value = "/edit", method = RequestMethod.POST)
+    public String updateLend(@Valid Lending lending, BindingResult result) {
+        if (result.hasErrors()) {
+            return "lendings/edit";
+        } else {
+            lendingService.editLending(lending);
+            return "redirect:/lend/all";
+        }
+    }
+
 
 
     @ModelAttribute("books")
