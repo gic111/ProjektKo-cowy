@@ -2,6 +2,7 @@ package org.example.app.service;
 
 
 import org.example.app.model.Book;
+import org.example.app.model.Category;
 
 import java.util.List;
 
@@ -15,4 +16,6 @@ public interface BookService {
     void deleteBook(Long id);
 
     List<Book> findAllBooks();
+
+    List<Book> findByCategoryJpql(Long id);
 }
