@@ -2,6 +2,7 @@ package org.example.app.service;
 
 import org.example.app.model.Book;
 
+import org.example.app.model.Category;
 import org.example.repository.BookRepository;
 
 import org.springframework.stereotype.Service;
@@ -42,6 +43,11 @@ public class JpaBookService implements BookService{
     @Override
     public List<Book> findAllBooks() {
         return bookRepository.findAll();
+    }
+
+    @Override
+    public List<Book> findByCategoryJpql(Long id) {
+        return bookRepository.findByCategoryJpql(id);
     }
 
 }

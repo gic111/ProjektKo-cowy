@@ -89,6 +89,11 @@ public class BookController {
         return this.categoryService.findAllCategories();
     }
 
+    @RequestMapping(value = "/show/category/{id}", method = RequestMethod.GET)
+    public String getBookByCategory(@PathVariable long id,Model model) {
+      model.addAttribute("book",bookService.findByCategoryJpql(id));
+        return "books/filtrbycategory";
 
+    }
 
 }
